@@ -4,29 +4,57 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import id.kharozim.mvvmcrud.models.toModel
+import id.kharozim.mvvmcrud.models.*
 import id.kharozim.mvvmcrud.repository.CommentRepository
-import id.kharozim.mvvmcrud.views.states.CommentGetAllState
+import id.kharozim.mvvmcrud.views.states.CommentState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 class CommentViewModel (private val commentRepository: CommentRepository) : ViewModel(){
 
-    private val mutableState by lazy { MutableLiveData<CommentGetAllState>() }
-    val state : LiveData<CommentGetAllState>
+    private val mutableState by lazy { MutableLiveData<CommentState>() }
+    val state : LiveData<CommentState>
     get() = mutableState
 
     fun getAllComment(){
-        mutableState.value = CommentGetAllState.Loading()
+        mutableState.value = CommentState.Loading()
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val response = commentRepository.getAllComment()
                 val list = response.asSequence().map { it.toModel() }.toList()
-                mutableState.postValue(CommentGetAllState.SuccessGetAllComment(list))
+                mutableState.postValue(CommentState.SuccessGetAllComment(list))
             } catch (exc : Exception){
                 exc.printStackTrace()
-                mutableState.postValue(CommentGetAllState.Error(exc))
+                mutableState.postValue(CommentState.Error(exc))
+            }
+        }
+    }
+
+    fun addComment(body: AddRequest){
+        mutableState.value = CommentState.Loading()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = commentRepository.addComment(body)
+                mutableState.postValue(CommentState.SuccessAddComment(response))
+
+
+            } catch (exc : Exception){
+                exc.printStackTrace()
+            }
+        }
+    }
+
+    fun editComment(model: CommentModel) {
+        mutableState.value = CommentState.Loading()
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = commentRepository.editComment( model.id, model.toRequest())
+                val model = response.toModel()
+                mutableState.postValue(CommentState.SuccessEditComment(model))
+
+            }catch (exc: Exception){
+                exc.printStackTrace()
             }
         }
     }

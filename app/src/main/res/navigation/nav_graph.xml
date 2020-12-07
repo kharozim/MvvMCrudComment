@@ -18,5 +18,9 @@
         android:id="@+id/addFragment"
         android:name="id.kharozim.mvvmcrud.views.fragments.AddFragment"
         android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="comment"
+            app:argType="id.kharozim.mvvmcrud.models.CommentModel" />
+    </fragment>
 </navigation>

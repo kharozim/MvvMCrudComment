@@ -20,7 +20,7 @@ class AddViewModel(private val commentRepository: CommentRepository) : ViewModel
         mutableState.value = AddState.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = commentRepository.addComment()
+//                val response = commentRepository.addComment()
 
 
             } catch (exc : Exception){

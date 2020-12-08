@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
 import id.kharozim.mvvmcrud.models.AddRequest
 import id.kharozim.mvvmcrud.repository.CommentRepository
-import id.kharozim.mvvmcrud.repository.CommentRepositoryImpl
-import id.kharozim.mvvmcrud.repository.clients.ApiClient
+import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl
+import id.kharozim.mvvmcrud.repository.remote.clients.ApiClient
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModel
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModelFactory
 import id.kharozim.mvvmcrud.views.states.CommentState

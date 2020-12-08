@@ -1,7 +1,7 @@
-package id.kharozim.mvvmcrud.repository.clients
+package id.kharozim.mvvmcrud.repository.remote.clients
 
 import com.google.gson.GsonBuilder
-import id.kharozim.mvvmcrud.repository.services.CommentService
+import id.kharozim.mvvmcrud.repository.remote.services.CommentService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

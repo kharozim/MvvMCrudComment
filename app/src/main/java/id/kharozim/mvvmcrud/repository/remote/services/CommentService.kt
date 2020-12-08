@@ -1,4 +1,4 @@
-package id.kharozim.mvvmcrud.repository.services
+package id.kharozim.mvvmcrud.repository.remote.services
 
 import id.kharozim.mvvmcrud.models.AddRequest
 import id.kharozim.mvvmcrud.models.AddResponse

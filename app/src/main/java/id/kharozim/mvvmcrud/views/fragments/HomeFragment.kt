@@ -12,8 +12,8 @@ import id.kharozim.mvvmcrud.R
 import id.kharozim.mvvmcrud.databinding.FragmentHomeBinding
 import id.kharozim.mvvmcrud.models.CommentModel
 import id.kharozim.mvvmcrud.repository.CommentRepository
-import id.kharozim.mvvmcrud.repository.CommentRepositoryImpl
-import id.kharozim.mvvmcrud.repository.clients.ApiClient
+import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl
+import id.kharozim.mvvmcrud.repository.remote.clients.ApiClient
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModel
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModelFactory
 import id.kharozim.mvvmcrud.views.adapters.CommentAdapter
@@ -53,11 +53,15 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
                     is CommentState.SuccessGetAllComment -> {
                         showLoading(false)
                         adapter.list = it.list.toMutableList()
-
                     }
-                    is CommentState.SuccessEditComment ->{
+                    is CommentState.SuccessEditComment -> {
                         showLoading(false)
                         adapter.editComment(it.model)
+                    }
+                    is CommentState.SuccessDeleteComment -> {
+                        showLoading(false)
+                        adapter.deleteComment(it.model.id)
+                        showMesage("${it.model.id} berhasil dihapus")
                     }
                     else -> throw Exception("Unsupported  state type")
                 }
@@ -65,6 +69,10 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
         }
 
         return binding.root
+    }
+
+    private fun showMesage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
@@ -83,7 +91,7 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
     }
 
     override fun onDelete(model: CommentModel) {
-
+        viewModel.deleteComment(model)
     }
 
 }

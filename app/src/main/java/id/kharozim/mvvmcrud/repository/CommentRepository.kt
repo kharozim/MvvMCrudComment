@@ -8,5 +8,5 @@ interface CommentRepository {
     suspend fun getAllComment(): List<CommentResponse>
     suspend fun addComment(body : AddRequest): AddResponse
     suspend fun editComment(id: Int, body: AddRequest) : CommentResponse
-//    suspend fun deleteComment(id : Int)
+    suspend fun deleteComment(id : Int) : CommentResponse
 }

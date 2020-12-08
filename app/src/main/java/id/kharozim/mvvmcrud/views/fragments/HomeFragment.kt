@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import id.kharozim.mvvmcrud.R
 import id.kharozim.mvvmcrud.databinding.FragmentHomeBinding
 import id.kharozim.mvvmcrud.models.CommentModel
 import id.kharozim.mvvmcrud.repository.CommentRepository
@@ -34,7 +35,7 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
-            btAdd.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAddFragment()) }
+            btAdd.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_addFragment) }
 
             rvHome.adapter = adapter
 
@@ -75,8 +76,14 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
         binding.pbLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    override fun onEdit(model: CommentModel) {
+    override fun onClick(model: CommentModel) {
+        val action = HomeFragmentDirections.actionHomeFragmentToEditFragment(model)
+        findNavController().navigate(action)
         viewModel.editComment(model)
+    }
+
+    override fun onDelete(model: CommentModel) {
+
     }
 
 }

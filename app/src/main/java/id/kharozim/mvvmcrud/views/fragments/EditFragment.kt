@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import id.kharozim.mvvmcrud.databinding.FragmentEditBinding
 import id.kharozim.mvvmcrud.models.AddRequest
 import id.kharozim.mvvmcrud.models.CommentModel
@@ -24,6 +25,7 @@ class EditFragment : Fragment() {
     private val repository: CommentRepository by lazy { CommentRepositoryImpl(service) }
     private val viewModelFactory by lazy { CommentViewModelFactory(repository) }
     private val viewModel by viewModels<CommentViewModel> { viewModelFactory }
+    private val args by navArgs<EditFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +33,16 @@ class EditFragment : Fragment() {
     ): View? {
 
         binding = FragmentEditBinding.inflate(inflater, container, false).apply {
+            tieName.setText(args.comment.name)
+            tieEmail.setText(args.comment.email)
+            tieBody.setText(args.comment.body)
+
+
             btEdit.setOnClickListener {
                 if (tieName.text.isNullOrEmpty() || tieEmail.text.isNullOrEmpty()) {
                     showMessage("email dan password tidak boleh kosong")
                 } else {
-                    val body = CommentModel(name = tieName.text.toString(), email = tieEmail.text.toString(),body =  tieBody.text.toString())
+                    val body = CommentModel(id = args.comment.id, name = tieName.text.toString(), email = tieEmail.text.toString(),body =  tieBody.text.toString())
                     viewModel.editComment(body)
                 }
             }
@@ -54,7 +61,7 @@ class EditFragment : Fragment() {
                 }
                 is CommentState.SuccessEditComment -> {
                     showLoading(false)
-                    showMessage("${it.model}")
+                    showMessage("${it.model.id} berhasil di update")
                 }
             }
         }

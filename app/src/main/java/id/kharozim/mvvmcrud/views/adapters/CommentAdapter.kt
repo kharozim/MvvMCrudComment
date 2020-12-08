@@ -24,6 +24,14 @@ class CommentAdapter(private val context: Context, private val listener: Comment
         }
     }
 
+    fun deleteComment(id: Int) {
+        val index = list.indexOfFirst { it.id == id }
+        if (index != -1)
+            list.removeAt(index)
+        notifyItemRemoved(index)
+
+    }
+
     inner class ViewHolder(val binding: ItemListCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(commentModel: CommentModel) {
@@ -34,7 +42,8 @@ class CommentAdapter(private val context: Context, private val listener: Comment
     }
 
     interface CommentListener {
-        fun onEdit(model: CommentModel)
+        fun onClick(model: CommentModel)
+        fun onDelete(model: CommentModel)
 
     }
 
@@ -52,7 +61,8 @@ class CommentAdapter(private val context: Context, private val listener: Comment
         val model = list[position]
         holder.bindData(model)
         holder.binding.run {
-            root.setOnClickListener { listener.onEdit(model) }
+            root.setOnClickListener { listener.onClick(model) }
+            btDel.setOnClickListener { listener.onDelete(model) }
         }
     }
 

@@ -62,9 +62,7 @@ class CommentViewModel (private val commentRepository: CommentRepository) : View
         mutableState.value = CommentState.Loading()
         viewModelScope.launch(Dispatchers.IO){
             try {
-                val response = commentRepository.deleteComment(model.id)
-                val model = response.toModel()
-                mutableState.postValue(CommentState.SuccessDeleteComment(model))
+                mutableState.postValue(CommentState.SuccessDeleteComment(model.id))
             } catch (exc : Exception){
 
             }

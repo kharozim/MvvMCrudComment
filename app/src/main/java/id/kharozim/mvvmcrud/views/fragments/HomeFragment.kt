@@ -60,8 +60,8 @@ class HomeFragment : Fragment(), CommentAdapter.CommentListener {
                     }
                     is CommentState.SuccessDeleteComment -> {
                         showLoading(false)
-                        adapter.deleteComment(it.model.id)
-                        showMesage("${it.model.id} berhasil dihapus")
+                        adapter.deleteComment(it.id)
+                        showMesage("${it.id} berhasil dihapus")
                     }
                     else -> throw Exception("Unsupported  state type")
                 }

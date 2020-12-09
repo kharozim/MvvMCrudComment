@@ -1,6 +1,7 @@
 package id.kharozim.mvvmcrud.models
 
 import android.os.Parcelable
+import id.kharozim.mvvmcrud.repository.remote.requests.CommentRequest
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

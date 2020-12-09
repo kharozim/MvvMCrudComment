@@ -1,6 +1,7 @@
-package id.kharozim.mvvmcrud.models
+package id.kharozim.mvvmcrud.repository.remote.responses
 
 import com.google.gson.annotations.SerializedName
+import id.kharozim.mvvmcrud.models.CommentModel
 
 data class CommentResponse(
 

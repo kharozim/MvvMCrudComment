@@ -1,4 +1,4 @@
-package id.kharozim.mvvmcrud.models
+package id.kharozim.mvvmcrud.repository.remote.requests
 
 import com.google.gson.annotations.SerializedName
 

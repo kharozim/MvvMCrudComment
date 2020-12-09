@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.kharozim.mvvmcrud.models.*
-import id.kharozim.mvvmcrud.repository.CommentRepository
+import id.kharozim.mvvmcrud.repository.CommentRemoteRepository
 import id.kharozim.mvvmcrud.views.states.CommentState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class CommentViewModel (private val commentRepository: CommentRepository) : ViewModel(){
+class CommentViewModel (private val commentRepository: CommentRemoteRepository) : ViewModel(){
+
 
     private val mutableState by lazy { MutableLiveData<CommentState>() }
     val state : LiveData<CommentState>

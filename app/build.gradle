@@ -68,5 +68,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     //koin
+//    implementation "org.koin:koin-android:$koin_version"
+//    implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
 }

@@ -1,11 +1,11 @@
 package id.kharozim.mvvmcrud.repository.remote
 
-import id.kharozim.mvvmcrud.models.CommentRequest
+import id.kharozim.mvvmcrud.repository.remote.requests.CommentRequest
 import id.kharozim.mvvmcrud.models.CommentResponse
-import id.kharozim.mvvmcrud.repository.CommentRepository
+import id.kharozim.mvvmcrud.repository.CommentRemoteRepository
 import id.kharozim.mvvmcrud.repository.remote.services.CommentService
 
-class CommentRepositoryImpl(private val service: CommentService) : CommentRepository {
+class CommentRemoteRepositoryImpl(private val service: CommentService) : CommentRemoteRepository {
     override suspend fun getAllComment(): List<CommentResponse> {
         return service.getAllComment()
     }

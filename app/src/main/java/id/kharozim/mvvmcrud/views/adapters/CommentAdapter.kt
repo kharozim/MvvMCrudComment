@@ -36,7 +36,7 @@ class CommentAdapter(private val context: Context, private val listener: Comment
         RecyclerView.ViewHolder(binding.root) {
         fun bindData(commentModel: CommentModel) {
             binding.tvName.text = "Name : ${commentModel.name}"
-            binding.tvEmail.text = "Email : ${commentModel.email}"
+            binding.tvEmail.text = commentModel.email
             binding.tvBody.text = "Comment : ${commentModel.body}"
         }
     }

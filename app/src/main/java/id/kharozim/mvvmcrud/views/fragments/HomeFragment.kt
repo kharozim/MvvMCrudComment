@@ -1,34 +1,30 @@
 package id.kharozim.mvvmcrud.views.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import id.kharozim.mvvmcrud.R
 import id.kharozim.mvvmcrud.databinding.FragmentHomeBinding
 import id.kharozim.mvvmcrud.models.CommentModel
-import id.kharozim.mvvmcrud.repository.CommentRepository
-import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl
-import id.kharozim.mvvmcrud.repository.remote.clients.ApiClient
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModel
-import id.kharozim.mvvmcrud.viewmodels.CommentViewModelFactory
 import id.kharozim.mvvmcrud.views.adapters.CommentAdapter
 import id.kharozim.mvvmcrud.views.states.CommentState
-import java.lang.Exception
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), CommentAdapter.CommentListener {
 
     private lateinit var binding: FragmentHomeBinding
 
     private val adapter by lazy { CommentAdapter(requireContext(), this) }
-    private val service by lazy { ApiClient.service }
-    private val remoteRepo: CommentRepository by lazy { CommentRepositoryImpl(service) }
+/*    private val service by lazy { ApiClient.service }
+    private val remoteRepo: CommentRemoteRepository by lazy { CommentRemoteRepositoryImpl(service) }
     private val viewModelFactory by lazy { CommentViewModelFactory(remoteRepo) }
-    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
+    private val viewModel by viewModel<CommentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

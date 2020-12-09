@@ -6,23 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
 import id.kharozim.mvvmcrud.models.CommentModel
-import id.kharozim.mvvmcrud.repository.CommentRepository
-import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl
-import id.kharozim.mvvmcrud.repository.remote.clients.ApiClient
 import id.kharozim.mvvmcrud.viewmodels.CommentViewModel
-import id.kharozim.mvvmcrud.viewmodels.CommentViewModelFactory
 import id.kharozim.mvvmcrud.views.states.CommentState
+import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
-    private val service by lazy { ApiClient.service }
-    private val repository: CommentRepository by lazy { CommentRepositoryImpl(service) }
+/*    private val service by lazy { ApiClient.service }
+    private val repository: CommentRemoteRepository by lazy { CommentRemoteRepositoryImpl(service) }
     private val viewModelFactory by lazy { CommentViewModelFactory(repository) }
-    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }
+    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
+    private val viewModel by viewModel<CommentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

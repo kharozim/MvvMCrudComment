@@ -66,4 +66,7 @@ dependencies {
 
     // Fragment Android Jetpack
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    //koin
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }

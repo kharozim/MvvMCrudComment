@@ -11,7 +11,7 @@ interface CommentService {
     suspend fun getAllComment(): List<CommentResponse>
 
     @POST("comments")
-    suspend fun addComment(@Body body: AddRequest): AddResponse
+    suspend fun addComment(@Body body: AddRequest): CommentResponse
 
     @PUT("comments/{id}")
     suspend fun editComment(

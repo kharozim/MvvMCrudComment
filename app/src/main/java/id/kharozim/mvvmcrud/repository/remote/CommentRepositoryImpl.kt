@@ -11,9 +11,10 @@ class CommentRepositoryImpl(private val service: CommentService) : CommentReposi
         return service.getAllComment()
     }
 
-    override suspend fun addComment(body: AddRequest): AddResponse {
+    override suspend fun addComment(body: AddRequest): CommentResponse {
         return service.addComment(body)
     }
+
 
     override suspend fun editComment(id: Int, body: AddRequest): CommentResponse {
         return service.editComment(id, body)

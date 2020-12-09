@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
 import id.kharozim.mvvmcrud.models.AddRequest
+import id.kharozim.mvvmcrud.models.CommentModel
 import id.kharozim.mvvmcrud.repository.CommentRepository
 import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl
 import id.kharozim.mvvmcrud.repository.remote.clients.ApiClient
@@ -34,7 +35,7 @@ class AddFragment : Fragment() {
                 if (tieName.text.isNullOrEmpty() || tieEmail.text.isNullOrEmpty()) {
                     showMessage("email dan password tidak boleh kosong")
                 } else {
-                    val body = AddRequest(tieName.text.toString(), tieEmail.text.toString(), tieBody.text.toString())
+                    val body = CommentModel(name = tieName.text.toString(),email =  tieEmail.text.toString(), body = tieBody.text.toString())
                     viewModel.addComment(body)
                 }
             }
@@ -50,7 +51,7 @@ class AddFragment : Fragment() {
                 is CommentState.Loading -> showLoading(true)
                 is CommentState.SuccessAddComment -> {
                     showLoading(false)
-                    showMessage("id ${commentState.addResponse.id} berhasil ditambahkan")
+                    showMessage("id ${commentState.model.id} berhasil ditambahkan")
                 }
                 is CommentState.Error -> {
                     showLoading(false)

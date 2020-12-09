@@ -31,12 +31,13 @@ class CommentViewModel (private val commentRepository: CommentRepository) : View
         }
     }
 
-    fun addComment(body: AddRequest){
+    fun addComment(model: CommentModel){
         mutableState.value = CommentState.Loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = commentRepository.addComment(body)
-                mutableState.postValue(CommentState.SuccessAddComment(response))
+                val response = commentRepository.addComment(model.toRequest())
+                val model = response.toModel()
+                mutableState.postValue(CommentState.SuccessAddComment(model))
 
 
             } catch (exc : Exception){

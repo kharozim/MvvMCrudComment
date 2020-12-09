@@ -2,7 +2,7 @@ package id.kharozim.mvvmcrud.models
 
 import com.google.gson.annotations.SerializedName
 
-data class AddRequest(
+data class CommentRequest(
 
     @field:SerializedName("name")
     val name: String,

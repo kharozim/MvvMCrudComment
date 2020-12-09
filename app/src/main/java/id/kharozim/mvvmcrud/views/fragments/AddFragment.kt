@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
-import id.kharozim.mvvmcrud.models.AddRequest
 import id.kharozim.mvvmcrud.models.CommentModel
 import id.kharozim.mvvmcrud.repository.CommentRepository
 import id.kharozim.mvvmcrud.repository.remote.CommentRepositoryImpl

@@ -1,9 +1,7 @@
 package id.kharozim.mvvmcrud.repository.remote.services
 
-import id.kharozim.mvvmcrud.models.AddRequest
-import id.kharozim.mvvmcrud.models.AddResponse
+import id.kharozim.mvvmcrud.models.CommentRequest
 import id.kharozim.mvvmcrud.models.CommentResponse
-import org.w3c.dom.Comment
 import retrofit2.http.*
 
 interface CommentService {
@@ -11,12 +9,12 @@ interface CommentService {
     suspend fun getAllComment(): List<CommentResponse>
 
     @POST("comments")
-    suspend fun addComment(@Body body: AddRequest): CommentResponse
+    suspend fun addComment(@Body body: CommentRequest): CommentResponse
 
     @PUT("comments/{id}")
     suspend fun editComment(
         @Path("id") id: Int,
-        @Body body: AddRequest
+        @Body body: CommentRequest
     ): CommentResponse
 
     @DELETE("comments/{id}")

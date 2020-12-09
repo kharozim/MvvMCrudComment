@@ -1,7 +1,6 @@
 package id.kharozim.mvvmcrud.repository.remote
 
-import id.kharozim.mvvmcrud.models.AddRequest
-import id.kharozim.mvvmcrud.models.AddResponse
+import id.kharozim.mvvmcrud.models.CommentRequest
 import id.kharozim.mvvmcrud.models.CommentResponse
 import id.kharozim.mvvmcrud.repository.CommentRepository
 import id.kharozim.mvvmcrud.repository.remote.services.CommentService
@@ -11,12 +10,12 @@ class CommentRepositoryImpl(private val service: CommentService) : CommentReposi
         return service.getAllComment()
     }
 
-    override suspend fun addComment(body: AddRequest): CommentResponse {
+    override suspend fun addComment(body: CommentRequest): CommentResponse {
         return service.addComment(body)
     }
 
 
-    override suspend fun editComment(id: Int, body: AddRequest): CommentResponse {
+    override suspend fun editComment(id: Int, body: CommentRequest): CommentResponse {
         return service.editComment(id, body)
     }
 

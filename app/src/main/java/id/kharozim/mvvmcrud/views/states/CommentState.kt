@@ -1,8 +1,6 @@
 package id.kharozim.mvvmcrud.views.states
 
-import id.kharozim.mvvmcrud.models.AddResponse
 import id.kharozim.mvvmcrud.models.CommentModel
-import id.kharozim.mvvmcrud.models.CommentResponse
 
 sealed class CommentState {
     data class Loading(val message: String = "Loading...") : CommentState()

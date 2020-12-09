@@ -12,5 +12,5 @@ data class CommentModel(
     val email: String
 ) : Parcelable
 
-fun CommentModel.toRequest() = AddRequest(name, email, body)
+fun CommentModel.toRequest() = CommentRequest(name, email, body)
 

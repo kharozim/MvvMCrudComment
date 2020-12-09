@@ -1,7 +1,7 @@
 package id.kharozim.mvvmcrud.repository.remote.services
 
 import id.kharozim.mvvmcrud.repository.remote.requests.CommentRequest
-import id.kharozim.mvvmcrud.models.CommentResponse
+import id.kharozim.mvvmcrud.repository.remote.responses.CommentResponse
 import retrofit2.http.*
 
 interface CommentService {

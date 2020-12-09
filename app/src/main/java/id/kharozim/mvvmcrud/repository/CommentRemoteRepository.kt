@@ -1,7 +1,7 @@
 package id.kharozim.mvvmcrud.repository
 
 import id.kharozim.mvvmcrud.repository.remote.requests.CommentRequest
-import id.kharozim.mvvmcrud.models.CommentResponse
+import id.kharozim.mvvmcrud.repository.remote.responses.CommentResponse
 
 interface CommentRemoteRepository {
     suspend fun getAllComment(): List<CommentResponse>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import id.kharozim.mvvmcrud.models.*
 import id.kharozim.mvvmcrud.repository.CommentRemoteRepository
+import id.kharozim.mvvmcrud.repository.remote.responses.toModel
 import id.kharozim.mvvmcrud.views.states.CommentState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,8 +1,8 @@
 package id.kharozim.mvvmcrud.repository.remote
 
 import id.kharozim.mvvmcrud.repository.remote.requests.CommentRequest
-import id.kharozim.mvvmcrud.models.CommentResponse
 import id.kharozim.mvvmcrud.repository.CommentRemoteRepository
+import id.kharozim.mvvmcrud.repository.remote.responses.CommentResponse
 import id.kharozim.mvvmcrud.repository.remote.services.CommentService
 
 class CommentRemoteRepositoryImpl(private val service: CommentService) : CommentRemoteRepository {

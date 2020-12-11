@@ -1,6 +1,5 @@
-package id.kharozim.mvvmcrud.data.persistance.repository.comment
+package id.kharozim.mvvmcrud.data.persistence.repository.comment
 
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
 import id.kharozim.mvvmcrud.domain.CommentDomain
 
 interface CommentRepoInterface {

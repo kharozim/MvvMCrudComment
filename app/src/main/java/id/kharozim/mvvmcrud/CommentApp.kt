@@ -1,10 +1,7 @@
 package id.kharozim.mvvmcrud
 
 import android.app.Application
-import id.kharozim.mvvmcrud.di.networkModule
-import id.kharozim.mvvmcrud.di.repositoryModule
-import id.kharozim.mvvmcrud.di.serviceModule
-import id.kharozim.mvvmcrud.di.viewModelModule
+import id.kharozim.mvvmcrud.presenter.infrastructure.di.modules.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -16,7 +13,14 @@ class CommentApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@CommentApp)
-            modules(networkModule, serviceModule, repositoryModule, viewModelModule)
+            modules(
+                networkModule,
+                persistenceModule,
+                mapperModule,
+                repositoryModule,
+                useCaseModule,
+                viewModelModule
+            )
         }
     }
 

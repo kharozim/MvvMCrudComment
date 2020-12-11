@@ -1,4 +1,4 @@
-package id.kharozim.mvvmcrud.data.persistance.mapper.comment
+package id.kharozim.mvvmcrud.data.persistence.mapper.comment
 
 import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
 import id.kharozim.mvvmcrud.data.payload.api.comment.CommentResponse

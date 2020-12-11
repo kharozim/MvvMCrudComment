@@ -1,4 +1,4 @@
-package id.kharozim.mvvmcrud.data.persistance.contract.comment
+package id.kharozim.mvvmcrud.data.persistence.contract.comment
 
 import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
 import id.kharozim.mvvmcrud.data.payload.api.comment.CommentResponse

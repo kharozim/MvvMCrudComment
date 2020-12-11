@@ -1,8 +1,7 @@
-package id.kharozim.mvvmcrud.data.persistance.repository.comment
+package id.kharozim.mvvmcrud.data.persistence.repository.comment
 
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
-import id.kharozim.mvvmcrud.data.persistance.contract.comment.CommentPersistenceContract
-import id.kharozim.mvvmcrud.data.persistance.mapper.comment.CommentMapperInterface
+import id.kharozim.mvvmcrud.data.persistence.contract.comment.CommentPersistenceContract
+import id.kharozim.mvvmcrud.data.persistence.mapper.comment.CommentMapperInterface
 import id.kharozim.mvvmcrud.domain.CommentDomain
 
 class CommentRepoImpl(

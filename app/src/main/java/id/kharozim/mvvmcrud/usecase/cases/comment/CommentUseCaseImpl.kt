@@ -1,6 +1,6 @@
 package id.kharozim.mvvmcrud.usecase.cases.comment
 
-import id.kharozim.mvvmcrud.data.persistance.repository.comment.CommentRepoInterface
+import id.kharozim.mvvmcrud.data.persistence.repository.comment.CommentRepoInterface
 import id.kharozim.mvvmcrud.domain.CommentDomain
 
 class CommentUseCaseImpl(

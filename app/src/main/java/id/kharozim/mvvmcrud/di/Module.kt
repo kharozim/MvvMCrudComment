@@ -1,7 +1,6 @@
 package id.kharozim.mvvmcrud.di
 
 import com.google.gson.GsonBuilder
-import id.kharozim.mvvmcrud.BuildConfig.DEBUG
 import id.kharozim.mvvmcrud.repository.CommentRemoteRepository
 import id.kharozim.mvvmcrud.repository.remote.CommentRemoteRepositoryImpl
 import id.kharozim.mvvmcrud.repository.remote.services.CommentService
@@ -13,7 +12,6 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 
 val networkModule = module {

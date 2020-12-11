@@ -42,5 +42,5 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { CommentViewModel(commentRepository = get()) }
+//    viewModel { CommentViewModel(commentRepository = get()) }
 }

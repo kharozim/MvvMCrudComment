@@ -1,12 +1,13 @@
 package id.kharozim.mvvmcrud.presenter.ui.states
 
+import id.kharozim.mvvmcrud.domain.CommentDomain
 import id.kharozim.mvvmcrud.domain.CommentModel
 
 sealed class CommentState {
     data class Loading(val message: String = "Loading...") : CommentState()
     data class Error(val exception: Exception) : CommentState()
-    data class SuccessGetAllComment(val list: List<CommentModel>) : CommentState()
-    data class SuccessAddComment(val model: CommentModel) : CommentState()
-    data class SuccessEditComment(val model: CommentModel) : CommentState()
+    data class SuccessGetAllComment(val list: List<CommentDomain>) : CommentState()
+    data class SuccessAddComment(val domain: CommentDomain) : CommentState()
+    data class SuccessEditComment(val domain: CommentDomain) : CommentState()
     data class SuccessDeleteComment(val id: Int) : CommentState()
 }

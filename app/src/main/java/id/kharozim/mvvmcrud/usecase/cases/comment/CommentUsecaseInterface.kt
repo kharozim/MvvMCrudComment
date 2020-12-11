@@ -6,7 +6,7 @@ import okhttp3.RequestBody
 
 interface CommentUsecaseInterface {
     suspend fun getAllComment(): List<CommentDomain>
-    suspend fun insertComment(body: CommentRequest): CommentDomain
-    suspend fun updateComment(id: Int, body: CommentRequest): CommentDomain
+    suspend fun insertComment(body: CommentDomain): CommentDomain
+    suspend fun updateComment(id: Int, body: CommentDomain): CommentDomain
     suspend fun deleteComment(id: Int): CommentDomain
 }

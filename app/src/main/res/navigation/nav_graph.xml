@@ -29,6 +29,6 @@
         tools:layout="@layout/fragment_edit" >
         <argument
             android:name="comment"
-            app:argType="id.kharozim.mvvmcrud.models.CommentModel" />
+            app:argType="id.kharozim.mvvmcrud.domain.CommentDomain" />
     </fragment>
 </navigation>

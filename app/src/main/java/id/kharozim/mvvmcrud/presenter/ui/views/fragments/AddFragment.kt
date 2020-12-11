@@ -6,21 +6,36 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import id.kharozim.mvvmcrud.data.persistance.contract.comment.CommentPersistenceContract
+import id.kharozim.mvvmcrud.data.persistance.mapper.comment.CommentMapperImpl
+import id.kharozim.mvvmcrud.data.persistance.mapper.comment.CommentMapperInterface
+import id.kharozim.mvvmcrud.data.persistance.repository.comment.CommentRepoImpl
+import id.kharozim.mvvmcrud.data.persistance.repository.comment.CommentRepoInterface
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
-import id.kharozim.mvvmcrud.domain.CommentModel
-import id.kharozim.mvvmcrud.presenter.ui.viewmodels.CommentViewModel
+import id.kharozim.mvvmcrud.domain.CommentDomain
+import id.kharozim.mvvmcrud.presenter.infrastructure.api.comment.client.CommentClient
+import id.kharozim.mvvmcrud.presenter.infrastructure.persistences.api.CommentPersistenceImpl
 import id.kharozim.mvvmcrud.presenter.ui.states.CommentState
-import org.koin.android.viewmodel.ext.android.viewModel
+import id.kharozim.mvvmcrud.presenter.ui.viewmodels.CommentViewModel
+import id.kharozim.mvvmcrud.presenter.ui.viewmodels.CommentViewModelFactory
+import id.kharozim.mvvmcrud.usecase.cases.comment.CommentUseCaseImpl
+import id.kharozim.mvvmcrud.usecase.cases.comment.CommentUsecaseInterface
 
 
 class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
-/*    private val service by lazy { ApiClient.service }
-    private val repository: CommentRemoteRepository by lazy { CommentRemoteRepositoryImpl(service) }
-    private val viewModelFactory by lazy { CommentViewModelFactory(repository) }
-    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
-    private val viewModel by viewModel<CommentViewModel>()
+
+    private val service by lazy { CommentClient.service}
+    private val persistence : CommentPersistenceContract by lazy { CommentPersistenceImpl(service) }
+    private val mapper : CommentMapperInterface by lazy { CommentMapperImpl() }
+    private val repository : CommentRepoInterface by lazy { CommentRepoImpl(persistence, mapper) }
+    private val useCase : CommentUsecaseInterface by lazy { CommentUseCaseImpl(repository) }
+    private val viewModelFactory : CommentViewModelFactory by lazy { CommentViewModelFactory(useCase) }
+    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }
+    //    private val viewModel by viewModel<CommentViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +47,7 @@ class AddFragment : Fragment() {
                 if (tieName.text.isNullOrEmpty() || tieEmail.text.isNullOrEmpty()) {
                     showMessage("email dan password tidak boleh kosong")
                 } else {
-                    val body = CommentModel(name = tieName.text.toString(),email =  tieEmail.text.toString(), body = tieBody.text.toString())
+                    val body = CommentDomain(name = tieName.text.toString(),email =  tieEmail.text.toString(), body = tieBody.text.toString())
                     viewModel.addComment(body)
                 }
             }
@@ -48,7 +63,7 @@ class AddFragment : Fragment() {
                 is CommentState.Loading -> showLoading(true)
                 is CommentState.SuccessAddComment -> {
                     showLoading(false)
-                    showMessage("id ${commentState.model.id} berhasil ditambahkan")
+                    showMessage("id ${commentState.domain.id} berhasil ditambahkan")
                 }
                 is CommentState.Error -> {
                     showLoading(false)

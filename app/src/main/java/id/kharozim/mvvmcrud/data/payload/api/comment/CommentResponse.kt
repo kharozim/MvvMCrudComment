@@ -1,7 +1,6 @@
 package id.kharozim.mvvmcrud.data.payload.api.comment
 
 import com.google.gson.annotations.SerializedName
-import id.kharozim.mvvmcrud.domain.CommentModel
 
 data class CommentResponse(
 
@@ -21,6 +20,6 @@ data class CommentResponse(
     val email: String
 )
 
-fun CommentResponse.toModel() = CommentModel(name, postId, id, body, email)
+//fun CommentResponse.toModel() = CommentModel(name, postId, id, body, email)
 
 

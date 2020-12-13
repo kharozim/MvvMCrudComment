@@ -1,7 +1,8 @@
 package id.kharozim.mvvmcrud.presenter.infrastructure.api.comment.service
 
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentResponse
+
+import id.kharozim.data.payload.api.comment.CommentRequest
+import id.kharozim.data.payload.api.comment.CommentResponse
 import retrofit2.http.*
 
 interface CommentService {

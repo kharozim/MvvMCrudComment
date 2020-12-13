@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import id.kharozim.domain.CommentDomain
 import id.kharozim.mvvmcrud.databinding.ItemListCommentBinding
-import id.kharozim.mvvmcrud.domain.CommentDomain
 
 class CommentAdapter(private val context: Context, private val listener: CommentListener) :
     RecyclerView.Adapter<CommentAdapter.ViewHolder>() {

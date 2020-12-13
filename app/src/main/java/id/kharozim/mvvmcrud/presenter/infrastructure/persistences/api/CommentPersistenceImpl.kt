@@ -1,13 +1,14 @@
 package id.kharozim.mvvmcrud.presenter.infrastructure.persistences.api
 
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentRequest
-import id.kharozim.mvvmcrud.data.payload.api.comment.CommentResponse
-import id.kharozim.mvvmcrud.data.persistence.contract.comment.CommentPersistenceContract
+
+import id.kharozim.data.payload.api.comment.CommentRequest
+import id.kharozim.data.payload.api.comment.CommentResponse
+import id.kharozim.data.persistences.contract.comment.CommentPersistenceContract
 import id.kharozim.mvvmcrud.presenter.infrastructure.api.comment.service.CommentService
 
 class CommentPersistenceImpl(
-    private val service : CommentService
-) : CommentPersistenceContract{
+    private val service: CommentService
+) : CommentPersistenceContract {
     override suspend fun getAllComment(): List<CommentResponse> {
         return service.getAllComment()
     }

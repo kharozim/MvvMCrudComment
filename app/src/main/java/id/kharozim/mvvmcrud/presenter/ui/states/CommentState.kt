@@ -1,6 +1,7 @@
 package id.kharozim.mvvmcrud.presenter.ui.states
 
-import id.kharozim.mvvmcrud.domain.CommentDomain
+import id.kharozim.domain.CommentDomain
+
 
 sealed class CommentState {
     data class Loading(val message: String = "Loading...") : CommentState()

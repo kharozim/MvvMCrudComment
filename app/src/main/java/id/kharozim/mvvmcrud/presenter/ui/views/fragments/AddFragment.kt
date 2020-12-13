@@ -6,11 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import id.kharozim.data.persistences.contract.comment.CommentPersistenceContract
+import id.kharozim.data.persistences.mapper.comment.CommentMapperImpl
+import id.kharozim.data.persistences.mapper.comment.CommentMapperInterface
+import id.kharozim.data.persistences.repository.comment.CommentRepo
+import id.kharozim.data.persistences.repository.comment.CommentRepoImpl
+import id.kharozim.domain.CommentDomain
 import id.kharozim.mvvmcrud.databinding.FragmentAddBinding
-import id.kharozim.mvvmcrud.domain.CommentDomain
 import id.kharozim.mvvmcrud.presenter.infrastructure.api.comment.client.CommentClient
+import id.kharozim.mvvmcrud.presenter.infrastructure.persistences.api.CommentPersistenceImpl
 import id.kharozim.mvvmcrud.presenter.ui.states.CommentState
 import id.kharozim.mvvmcrud.presenter.ui.viewmodels.CommentViewModel
+import id.kharozim.mvvmcrud.presenter.ui.viewmodels.CommentViewModelFactory
+import id.kharozim.usecase.cases.comment.CommentUseCase
+import id.kharozim.usecase.cases.comment.CommentUseCaseImpl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -19,14 +29,13 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
 
     private val service by lazy { CommentClient.service }
-
-    /*   private val persistence : CommentPersistenceContract by lazy { CommentPersistenceImpl(service) }
-       private val mapper : CommentMapperInterface by lazy { CommentMapperImpl() }
-       private val repository : CommentRepoInterface by lazy { CommentRepoImpl(persistence, mapper) }
-       private val useCase : CommentUsecaseInterface by lazy { CommentUseCaseImpl(repository) }
-       private val viewModelFactory : CommentViewModelFactory by lazy { CommentViewModelFactory(useCase) }
-       private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
-    private val viewModel by viewModel<CommentViewModel>()
+    private val persistence: CommentPersistenceContract by lazy { CommentPersistenceImpl(service) }
+    private val mapper: CommentMapperInterface by lazy { CommentMapperImpl() }
+    private val repository: CommentRepo by lazy { CommentRepoImpl(persistence, mapper) }
+    private val useCase: CommentUseCase by lazy { CommentUseCaseImpl(repository) }
+    private val viewModelFactory: CommentViewModelFactory by lazy { CommentViewModelFactory(useCase) }
+    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }
+//    private val viewModel by viewModel<CommentViewModel>()
 
 
     override fun onCreateView(

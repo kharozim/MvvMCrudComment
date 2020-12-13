@@ -71,4 +71,10 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-fragment:$koin_version"
+
+    //from another module (kotlin-library)
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':usecase')
+
 }

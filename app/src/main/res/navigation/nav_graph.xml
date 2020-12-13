@@ -26,9 +26,5 @@
         android:id="@+id/editFragment"
         android:name="id.kharozim.mvvmcrud.presenter.ui.views.fragments.EditFragment"
         android:label="fragment_edit"
-        tools:layout="@layout/fragment_edit" >
-        <argument
-            android:name="comment"
-            app:argType="id.kharozim.mvvmcrud.domain.CommentDomain" />
-    </fragment>
+        tools:layout="@layout/fragment_edit" />
 </navigation>

@@ -1,22 +1,25 @@
 package id.kharozim.mvvmcrud.presenter.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
-import id.kharozim.mvvmcrud.domain.CommentDomain
+import com.google.gson.Gson
+import id.kharozim.domain.CommentDomain
 import id.kharozim.mvvmcrud.presenter.ui.states.CommentState
-import id.kharozim.mvvmcrud.usecase.cases.comment.CommentUsecaseInterface
+import id.kharozim.usecase.cases.comment.CommentUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Suppress("UNCHECKED_CAST")
 class CommentViewModelFactory(
-    private val useCase: CommentUsecaseInterface
+    private val useCase: CommentUseCase
     ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return CommentViewModel(useCase) as T
     }
 }
 
-class CommentViewModel(private val userCase: CommentUsecaseInterface) : ViewModel() {
+
+class CommentViewModel(private val userCase: CommentUseCase) : ViewModel() {
 
 
     private val mutableState by lazy { MutableLiveData<CommentState>() }
@@ -57,6 +60,7 @@ class CommentViewModel(private val userCase: CommentUsecaseInterface) : ViewMode
             try {
                 val response = userCase.updateComment(domain.id, domain)
                 mutableState.postValue(CommentState.SuccessEditComment(response))
+                Log.e("editComment", "response : " + Gson().toJson(response))
 
             } catch (exc: Exception) {
                 exc.printStackTrace()

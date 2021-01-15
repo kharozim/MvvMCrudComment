@@ -17,13 +17,13 @@ class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
 
-/*    private val service by lazy { CommentClient.service }
-    private val persistence: CommentPersistenceContract by lazy { CommentPersistenceImpl(service) }
-    private val mapper: CommentMapperInterface by lazy { CommentMapperImpl() }
-    private val repository: CommentRepo by lazy { CommentRepoImpl(persistence, mapper) }
-    private val useCase: CommentUseCase by lazy { CommentUseCaseImpl(repository) }
-    private val viewModelFactory: CommentViewModelFactory by lazy { CommentViewModelFactory(useCase) }
-    private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
+    /*    private val service by lazy { CommentClient.service }
+        private val persistence: CommentPersistenceContract by lazy { CommentPersistenceImpl(service) }
+        private val mapper: CommentMapperInterface by lazy { CommentMapperImpl() }
+        private val repository: CommentRepo by lazy { CommentRepoImpl(persistence, mapper) }
+        private val useCase: CommentUseCase by lazy { CommentUseCaseImpl(repository) }
+        private val viewModelFactory: CommentViewModelFactory by lazy { CommentViewModelFactory(useCase) }
+        private val viewModel by viewModels<CommentViewModel> { viewModelFactory }*/
     private val viewModel by viewModel<CommentViewModel>()
 
 
@@ -31,8 +31,16 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBinding.inflate(inflater, container, false).apply {
+        binding = FragmentAddBinding.inflate(inflater, container, false)
 
+        setView()
+        setObserve()
+
+        return binding.root
+    }
+
+    private fun setView() {
+        binding.run {
             btnAdd.setOnClickListener {
                 if (tieName.text.isNullOrEmpty() || tieEmail.text.isNullOrEmpty()) {
                     showMessage("email dan password tidak boleh kosong")
@@ -46,9 +54,6 @@ class AddFragment : Fragment() {
                 }
             }
         }
-
-        setObserve()
-        return binding.root
     }
 
     private fun setObserve() {

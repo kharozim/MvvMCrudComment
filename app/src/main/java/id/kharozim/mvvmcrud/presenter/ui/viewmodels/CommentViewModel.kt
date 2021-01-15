@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 @Suppress("UNCHECKED_CAST")
 class CommentViewModelFactory(
     private val useCase: CommentUseCase
-    ) : ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return CommentViewModel(useCase) as T
     }
@@ -47,7 +47,6 @@ class CommentViewModel(private val userCase: CommentUseCase) : ViewModel() {
                 val response = userCase.insertComment(domain)
                 mutableState.postValue(CommentState.SuccessAddComment(response))
 
-
             } catch (exc: Exception) {
                 exc.printStackTrace()
             }
@@ -73,8 +72,10 @@ class CommentViewModel(private val userCase: CommentUseCase) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 mutableState.postValue(CommentState.SuccessDeleteComment(domain.id))
+                Log.e("mutableState", "deleteComment: ${domain.id}")
             } catch (exc: Exception) {
-
+                exc.printStackTrace()
+                mutableState.postValue(CommentState.Error(exc))
             }
         }
     }
